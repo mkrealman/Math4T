@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Сайт обучения — Математика (4 класс)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{--bg:#f6fbf7;--card:#fff;--ink:#183a23;--accent:#2ea36a;--accent-2:#c8ecd9;--bad:#c0392b;--good:#1e8449}
+*{box-sizing:border-box}
+body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,Arial}
+.wrap{max-width:1000px;margin:24px auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--accent-2);border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.05);padding:22px}
+h1{margin:0 0 12px;font-size:26px;color:var(--accent)}
+h2{margin:18px 0 6px;font-size:20px;color:#1e5f3b}
+.btn{background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;margin:4px;transition:.15s}
+.btn.secondary{background:#e9f7ef;color:#105433;border:1px solid var(--accent-2)}
+.menu{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.hidden{display:none}
+.q{padding:10px;margin:8px 0;border-left:5px solid var(--accent-2);background:#fcfffd;border-radius:8px}
+.q.correct{border-left-color:var(--good);background:#e8fce8}
+.q.wrong{border-left-color:var(--bad);background:#ffecec}
+.q .title{font-weight:600}
+.score{font-weight:700;color:#0f6b3f;display:inline-block;margin-left:8px}
+.timer{font-weight:700;color:#105433;margin:10px 0}
+table{border-collapse:collapse;width:100%}
+table,th,td{border:1px solid var(--accent-2)}
+th,td{padding:6px;text-align:left}
+input.answer{min-width:90px;padding:6px 8px;margin:6px;border:1px solid #cfe8d7;border-radius:8px}
+input.answer[type=number]{width:110px}
+#math-tests h1 { color:#1d5fd1; }
+#mult-tests h1 { color:#d17a1d; }
+.btn.math { background:#1d5fd1; }
+.btn.math:hover { background:#174ca3; }
+.btn.mult { background:#d17a1d; }
+.btn.mult:hover { background:#a85f16; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Главное меню -->
+  <div class="card" id="home">
+    <h1>Сайт обучения — Математика (4 класс)</h1>
+    <p>Выберите раздел:</p>
+    <div class="menu">
+      <button class="btn" onclick="openScreen('theory')">📚 Теория</button>
+      <button class="btn" onclick="openScreen('dictionary')">📖 Словарь</button>
+      <button class="btn" onclick="openScreen('tests')">📝 Тесты</button>
+    </div>
+  </div>
+
+  <!-- Теория -->
+<div class="card hidden" id="theory">
+  <style>
+    /* Стили применяются только внутри блока теории */
+    #theory .exercise {
+      background-color: #f0fdf4;
+      border: 2px solid #34d399;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      box-shadow: 0 2px 6px rgba(0,128,0,0.15);
+      line-height: 1.55;
+    }
+    #theory .exercise .label{font-weight:700;color:#065f46;display:block;margin-bottom:4px}
+    #theory h1{margin-top:0}
+    #theory h2{margin-top:18px}
+    #theory ul{margin:0 0 8px 18px}
+    #theory .note{background:#ecfeff;border-left:4px solid #06b6d4;padding:8px 12px;border-radius:8px;margin:10px 0}
+    #theory .term{font-weight:600;color:#065f46}
+    #theory .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+    #theory .ex-inline{display:grid;grid-template-columns:24px 1fr;gap:8px}
+  </style>
+
+  <h1>📚 Теория — Математика 4 класс (понятно и по-доброму)</h1>
+
+  <!-- ЕДИНИЦЫ ИЗМЕРЕНИЯ -->
+  <section>
+    <h2>📏 Единицы длины</h2>
+    <p>Длина — это «как далеко». Помогают <span class="term">мм, см, дм, м, км</span>:
+      10 мм = 1 см, 10 см = 1 дм, 10 дм = 1 м, 1000 м = 1 км.</p>
+    <div class="grid2">
+      <div class="exercise">
+        <span class="label">📘 Пример</span>
+        3 м = 300 см; 250 см = 2 м 50 см.
+      </div>
+      <div class="exercise">
+        <span class="label">✏️ Задача</span>
+        7 м = ___ см; 350 см = ___ м ___ см; от школы до парка 2 км — это ___ м.
+      </div>
+    </div>
+
+    <h2>⚖️ Масса</h2>
+    <p>Масса — «насколько тяжёлый предмет». <span class="term">г, кг, т</span>:
+      1000 г = 1 кг, 1000 кг = 1 т.</p>
+    <div class="grid2">
+      <div class="exercise"><span class="label">📘 Пример</span> 4500 г = 4 кг 500 г.</div>
+      <div class="exercise"><span class="label">✏️ Задача</span> 7200 г = ___ кг ___ г; что тяжелее: 3 кг или 2800 г?</div>
+    </div>
+
+    <h2>🥛 Объём</h2>
+    <p>Объём — «сколько места жидкость занимает». <span class="term">мл, л, hl</span>:
+      1000 мл = 1 л; 1 hl = 100 л.</p>
+    <div class="grid2">
+      <div class="exercise"><span class="label">📘 Пример</span> 2,5 л = 2500 мл.</div>
+      <div class="exercise"><span class="label">✏️ Задача</span> 850 л = ___ hl ___ л; 5 л = ___ мл.</div>
+    </div>
+  </section>
+
+  <!-- ЧИСЛА И ДЕЙСТВИЯ -->
+  <section>
+    <h2>🔢 Числа и действия</h2>
+
+    <h3>Разряды</h3>
+    <p>Число строится из разрядов: <span class="term">тысячи</span>, <span class="term">сотни</span>, <span class="term">десятки</span>, <span class="term">единицы</span>.
+      Например, 3 482 = 3 000 + 400 + 80 + 2.</p>
+    <div class="exercise"><span class="label">✏️ Задача</span> Разложи: 7 305; 5 420; 9 052.</div>
+
+    <h3>Сложение и вычитание (в столбик)</h3>
+    <p>Пишем по разрядам; если «перенос десятка/сотни» — переносим в следующий разряд.
+      Проверка: обратным действием и прикидкой.</p>
+    <div class="grid2">
+      <div class="exercise"><span class="label">📘 Пример</span> 906 – 487 = 419 (проверка: 487 + 419 = 906).</div>
+      <div class="exercise"><span class="label">✏️ Задача</span> 542 – 278; 715 + 184; 800 – 465.</div>
+    </div>
+
+    <h3>Умножение на однозначное и двузначное</h3>
+    <p>Умножаем по разрядам. Для двузначного: умножаем на десятки и на единицы, затем складываем.</p>
+    <div class="grid2">
+      <div class="exercise"><span class="label">📘 Пример</span> 128 × 12 = 128×10 + 128×2 = 1280 + 256 = 1536.</div>
+      <div class="exercise"><span class="label">✏️ Задача</span> 246 × 14; 307 × 8.</div>
+    </div>
+
+    <h3>Деление. Остаток</h3>
+    <p>Если «не делится ровно» — получается <span class="term">остаток</span>.
+      Записываем: 437 : 5 = 87 (ост. 2).</p>
+    <div class="exercise"><span class="label">✏️ Задача</span> 523 : 4 = ___ (ост. ___).</div>
+
+    <h3>Порядок действий и скобки</h3>
+    <p>Сначала скобки → умножение/деление → сложение/вычитание.</p>
+    <div class="exercise"><span class="label">✏️ Задача</span> (35 + 42) – 20; 120 – (45 + 25); (500 – 300) + 120.</div>
+
+    <h3>Прикидка (оценка)</h3>
+    <p>Округляем числа, чтобы примерно понять ответ: 398 + 612 ≈ 400 + 600 = 1000.</p>
+  </section>
+
+  <!-- ДРОБИ -->
+  <section>
+    <h2>🍰 Дроби</h2>
+
+    <h3>Что такое дробь</h3>
+    <p>Дробь показывает часть целого. Верхнее число — <span class="term">числитель</span> (сколько частей взяли),
+      нижнее — <span class="term">знаменатель</span> (на сколько частей поделили). 1/4 — это «одна из четырёх равных частей».</p>
+
+    <h3>Дроби на прямой</h3>
+    <p>Раздели отрезок от 0 до 1 на равные части и отметь точки: 1/4, 2/4, 3/4, 1.</p>
+
+    <h3>Сравнение дробей (общий знаменатель)</h3>
+    <p>Если знаменатели одинаковые — больше та дробь, у которой числитель больше:
+      5/9 &gt; 3/9. Если разные — приводим к одному знаменателю (в 4 классе — на простых примерах).</p>
+
+    <h3>Сложение и вычитание дробей с одинаковыми знаменателями</h3>
+    <p>Складываем/вычитаем числители, знаменатель не меняется:
+      2/9 + 4/9 = 6/9.</p>
+
+    <div class="grid2">
+      <div class="exercise"><span class="label">📘 Пример</span> 7/8 – 3/8 = 4/8 = 1/2.</div>
+      <div class="exercise"><span class="label">✏️ Задача</span> 3/5 + 1/5; 6/7 – 2/7; что больше: 2/3 или 3/4?</div>
+    </div>
+
+    <div class="note"><b>Подсказка:</b> целое тоже можно записать дробью: 1 = 4/4 = 5/5 = 8/8.</div>
+  </section>
+
+  <!-- ГЕОМЕТРИЯ -->
+  <section>
+    <h2>📐 Геометрия</h2>
+
+    <h3>Прямая, отрезок, луч</h3>
+    <ul>
+      <li><span class="term">Прямая</span> — линия без начала и конца.</li>
+      <li><span class="term">Отрезок</span> — кусочек прямой с двумя концами.</li>
+      <li><span class="term">Луч</span> — начинается в точке и идёт бесконечно в одну сторону.</li>
+    </ul>
+
+    <h3>Угол</h3>
+    <p>Два луча из одной точки образуют <span class="term">угол</span>. Виды:
+      <span class="term">прямой</span> 90°, <span class="term">острый</span> меньше 90°, <span class="term">тупой</span> больше 90°.</p>
+
+    <h3>Параллельные и перпендикулярные</h3>
+    <p><span class="term">Параллельные</span> линии не пересекутся (как рельсы). 
+       <span class="term">Перпендикулярные</span> — под прямым углом (угол комнаты).</p>
+
+    <h3>Фигуры и их свойства</h3>
+    <ul>
+      <li><span class="term">Треугольник</span> — 3 стороны, 3 угла (бывают равносторонние, равнобедренные, разносторонние).</li>
+      <li><span class="term">Квадрат</span> — 4 равные стороны, все углы 90°.</li>
+      <li><span class="term">Прямоугольник</span> — противоположные стороны равны, углы 90°.</li>
+      <li><span class="term">Круг</span> — без углов, все точки на окружности одинаково удалены от центра.</li>
+    </ul>
+
+    <h3>Площадь</h3>
+    <p><span class="term">Площадь</span> показывает, сколько места занимает фигура. 
+      Квадратные единицы: см², дм², м². <br>
+      Площадь прямоугольника = длина × ширина; площадь квадрата = сторона × сторона.</p>
+
+    <div class="grid2">
+      <div class="exercise">
+        <span class="label">📘 Примеры</span>
+        <div class="ex-inline">🟩<div>Коврик 4 м × 3 м → 12 м².</div></div>
+        <div class="ex-inline">📏<div>Отрезок AB = 6 см; луч начинается в точке A.</div></div>
+      </div>
+      <div class="exercise">
+        <span class="label">✏️ Задачи</span>
+        1) Нарисуй две перпендикулярные прямые. <br>
+        2) Найди площадь квадрата со стороной 8 см. <br>
+        3) Назови в комнате предметы квадратной/прямоугольной/круглой формы.
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРИКЛАДНАЯ МАТЕМАТИКА -->
+  <section>
+    <h2>🛒🚍 Прикладная математика</h2>
+
+    <h3>Цена, количество, стоимость</h3>
+    <p><span class="term">Стоимость = Цена × Количество</span>.
+      Если известны два значения — третье находим делением.</p>
+    <div class="grid2">
+      <div class="exercise"><span class="label">📘 Пример</span> Карандаши по 0,4 €; 5 шт → 2 €.</div>
+      <div class="exercise"><span class="label">✏️ Задача</span> Тетради по 1,5 €; 4 шт → ___ €.</div>
+    </div>
+
+    <h3>Скорость, время, расстояние</h3>
+    <p>Связаны формулой: <span class="term">Расстояние = Скорость × Время</span>.
+      Тогда <span class="term">Скорость = Расстояние ÷ Время</span>,
+      <span class="term">Время = Расстояние ÷ Скорость</span>.</p>
+    <div class="grid2">
+      <div class="exercise"><span class="label">📘 Пример</span> 60 км/ч × 2 ч = 120 км.</div>
+      <div class="exercise"><span class="label">✏️ Задача</span> Велосипедист едет 15 км/ч 3 часа. Сколько проедет?</div>
+    </div>
+
+    <h3>Измерения в жизни</h3>
+    <p>Сколько воды в бутылке? Какая длина парты? Сколько весит рюкзак?
+      Используем нужные единицы и переводим при необходимости.</p>
+  </section>
+
+  <!-- ЛОГИКА И ДАННЫЕ -->
+  <section>
+    <h2>🧠📊 Логика и данные</h2>
+
+    <h3>Таблицы и диаграммы</h3>
+    <p>Таблицы помогают аккуратно хранить числа, а диаграммы — быстро сравнивать.
+      Для количеств удобно строить столбчатые диаграммы.</p>
+    <div class="grid2">
+      <div class="exercise"><span class="label">📘 Пример</span> В классе 12 мальчиков и 14 девочек — столбики помогут увидеть, кого больше.</div>
+      <div class="exercise"><span class="label">✏️ Задача</span> По таблице продаж за 3 дня выбери самый «урожайный» день и объясни почему.</div>
+    </div>
+
+    <h3>Как решать текстовые задачи</h3>
+    <ol>
+      <li>Внимательно прочитай. Что дано? Что найти?</li>
+      <li>Нарисуй схему/подчеркни ключевые числа.</li>
+      <li>Составь выражение или план из шагов.</li>
+      <li>Выполни вычисления и <i>проверь</i>.</li>
+      <li>Сделай ответ словами.</li>
+    </ol>
+    <div class="exercise"><span class="label">✏️ Тренировка</span> В коробке 24 карандаша, их разложили поровну по 6 пеналам. Сколько в каждом?</div>
+  </section>
+
+  <button class="btn secondary" onclick="openScreen('home')">⬅ Вернуться</button>
+</div>
+<!-- СЛОВАРЬ -->
+  <div class="card hidden" id="dictionary">
+    <h1>📖 Словарь математических терминов</h1>
+    <p>Можно смотреть как <b>таблицу</b> или как <b>карточки</b>. Нажми кнопку, чтобы переключить:</p>
+    <button class="btn secondary" onclick="toggleDictMode()">🔄 Переключить режим</button>
+
+    <!-- Режим: таблица -->
+    <div id="dict-table">
+      <table>
+        <thead>
+          <tr><th>Latviski</th><th>Русский</th><th>Пример / Объяснение</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>metrs</td><td>метр</td><td>1 m = 100 cm</td></tr>
+          <tr><td>decimetrs</td><td>дециметр</td><td>1 dm = 10 cm</td></tr>
+          <tr><td>centimetrs</td><td>сантиметр</td><td>ширина ногтя ≈ 1 cm</td></tr>
+          <tr><td>milimetrs</td><td>миллиметр</td><td>толщина монетки ≈ 1 mm</td></tr>
+          <tr><td>kilometrs</td><td>километр</td><td>1 km = 1000 m</td></tr>
+
+          <tr><td>kilograms</td><td>килограмм</td><td>пакет сахара ≈ 1 kg</td></tr>
+          <tr><td>grams</td><td>грамм</td><td>скрепка ≈ 1 g</td></tr>
+          <tr><td>tonna</td><td>тонна</td><td>машина ≈ 1 t</td></tr>
+
+          <tr><td>litrs</td><td>литр</td><td>пакет молока = 1 l</td></tr>
+          <tr><td>mililitrs</td><td>миллилитр</td><td>капля воды ≈ 1 ml</td></tr>
+          <tr><td>hektolitrs</td><td>гектолитр</td><td>1 hl = 100 l</td></tr>
+
+          <tr><td>skaitlis</td><td>число</td><td>247 — трёхзначное число</td></tr>
+          <tr><td>vieni</td><td>единицы</td><td>247 → 7</td></tr>
+          <tr><td>desmiti</td><td>десятки</td><td>247 → 40</td></tr>
+          <tr><td>simti</td><td>сотни</td><td>247 → 200</td></tr>
+          <tr><td>tūkstoši</td><td>тысячи</td><td>3258 → 3 тысячи</td></tr>
+
+          <tr><td>saskaitīšana</td><td>сложение</td><td>5 + 3 = 8</td></tr>
+          <tr><td>atņemšana</td><td>вычитание</td><td>9 − 4 = 5</td></tr>
+          <tr><td>reizināšana</td><td>умножение</td><td>7 × 8 = 56</td></tr>
+          <tr><td>dalīšana</td><td>деление</td><td>12 ÷ 3 = 4</td></tr>
+
+          <tr><td>iekavas</td><td>скобки</td><td>(2 + 3) × 4</td></tr>
+          <tr><td>matemātiskā izteiksme</td><td>математическое выражение</td><td>(6 + 2) × 5</td></tr>
+          <tr><td>vērtība</td><td>значение</td><td>значение выражения = 40</td></tr>
+
+          <tr><td>daļskaitlis</td><td>дробь</td><td>1/2, 3/4</td></tr>
+          <tr><td>saucējs</td><td>знаменатель</td><td>3/5 → 5</td></tr>
+          <tr><td>skaitītājs</td><td>числитель</td><td>3/5 → 3</td></tr>
+          <tr><td>kopējais saucējs</td><td>общий знаменатель</td><td>для 1/2 и 1/3 → 6</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Режим: карточки -->
+    <div id="dict-cards" class="hidden">
+      <div class="menu">
+        <div class="card"><b>metrs</b> = метр<br><i>1 m = 100 cm</i></div>
+        <div class="card"><b>decimetrs</b> = дециметр<br><i>1 dm = 10 cm</i></div>
+        <div class="card"><b>centimetrs</b> = сантиметр<br><i>ноготь ≈ 1 cm</i></div>
+        <div class="card"><b>milimetrs</b> = миллиметр<br><i>монетка ≈ 1 mm</i></div>
+        <div class="card"><b>kilometrs</b> = километр<br><i>1 km = 1000 m</i></div>
+        <div class="card"><b>kilograms</b> = килограмм<br><i>пакет сахара ≈ 1 kg</i></div>
+        <div class="card"><b>grams</b> = грамм<br><i>скрепка ≈ 1 g</i></div>
+        <div class="card"><b>tonna</b> = тонна<br><i>машина ≈ 1 t</i></div>
+        <div class="card"><b>litrs</b> = литр<br><i>пакет молока = 1 l</i></div>
+        <div class="card"><b>mililitrs</b> = миллилитр<br><i>капля воды ≈ 1 ml</i></div>
+        <div class="card"><b>hektolitrs</b> = гектолитр<br><i>1 hl = 100 l</i></div>
+        <div class="card"><b>daļskaitlis</b> = дробь<br><i>1/2, 3/4</i></div>
+        <div class="card"><b>saucējs</b> = знаменатель<br><i>3/5 → 5</i></div>
+        <div class="card"><b>skaitītājs</b> = числитель<br><i>3/5 → 3</i></div>
+      </div>
+    </div>
+
+    <button class="btn secondary" onclick="openScreen('home')">⬅ Вернуться</button>
+  </div>
+
+  <script>
+  function toggleDictMode(){
+    const t=document.getElementById("dict-table");
+    const c=document.getElementById("dict-cards");
+    t.classList.toggle("hidden");
+    c.classList.toggle("hidden");
+  }
+  </script>
+<!-- ТЕСТЫ -->
+  <div class="card hidden" id="tests">
+    <h1>📝 Тесты</h1>
+    <p>Выберите раздел:</p>
+    <div class="menu">
+      <button class="btn math" onclick="openScreen('math-tests')">📘 Математика 4 класс</button>
+      <button class="btn mult" onclick="openScreen('mult-tests')">✖️ Таблица умножения</button>
+    </div>
+    <button class="btn secondary" onclick="openScreen('home')">⬅ Вернуться</button>
+  </div>
+
+  <!-- Раздел Математика -->
+  <div class="card hidden" id="math-tests">
+    <h1>📘 Математика 4 класс</h1>
+    <label><input type="checkbox" id="mode-timer-math"> Решать на время</label>
+    <div id="variants-buttons"></div>
+    <h3>🏆 Рекорды</h3>
+    <table id="records-table"><tr><th>Вариант</th><th>Лучшее время</th><th>Правильных</th></tr></table>
+    <button class="btn secondary" onclick="openScreen('tests')">⬅ Назад</button>
+  </div>
+
+  <!-- Раздел Таблица умножения -->
+  <div class="card hidden" id="mult-tests">
+    <h1>✖️ Таблица умножения</h1>
+    <label><input type="checkbox" id="mode-timer-mult"> Решать на время</label>
+    <div id="mult-buttons"></div>
+    <h3>🏆 Рекорды</h3>
+    <table id="mult-records-table"><tr><th>Вариант</th><th>Лучшее время</th><th>Правильных</th></tr></table>
+    <button class="btn secondary" onclick="openScreen('tests')">⬅ Назад</button>
+  </div>
+
+  <!-- Вариант -->
+  <div class="card hidden" id="variant">
+    <h1 id="variant-title">Вариант</h1>
+    <div class="timer hidden" id="timer-box">Время: 0:00</div>
+    <div id="questions"></div>
+    <div>
+      <label>Пароль: <input id="pwd" type="password" placeholder="****" inputmode="numeric"></label>
+      <button class="btn" onclick="checkAnswers()">Проверить</button>
+      <button class="btn secondary" onclick="resetVariant()">Сбросить</button>
+      <span class="score" id="score"></span>
+      <div id="pwdmsg"></div>
+      <button class="btn secondary" id="back-btn">⬅ Назад</button>
+    </div>
+  </div>
+
+</div> <!-- wrap -->
+
+<script>
+/* === Переключение экранов === */
+function openScreen(id){
+  ["home","theory","dictionary","tests","math-tests","mult-tests","variant"].forEach(s=>{
+    const el=document.getElementById(s); if(el) el.classList.add("hidden");
+  });
+  document.getElementById(id).classList.remove("hidden");
+  if(id==="math-tests") updateRecordsTable();
+  if(id==="mult-tests") updateMultRecordsTable();
+}
+
+/* === Утилиты === */
+const V=(ans)=>({type:"text",ans:Array.isArray(ans)?ans:[ans]});
+const N=(ans)=>({type:"number",ans:[String(ans)]});
+function item(q,...inputs){return {q,inputs};}
+function part(header,items){return {header,items};}
+
+/* === Варианты математики === */
+const variants={};
+variants[1]={title:"Вариант 1",password:"1111",parts:[part("Задачи",[item("1. 2+2=",N(4)),item("2. 5×3=",N(15))])]};
+variants[2]={title:"Вариант 2",password:"2222",parts:[part("Задачи",[item("1. 9-4=",N(5)),item("2. 7×8=",N(56))])]};
+variants[3]={title:"Вариант 3",password:"3333",parts:[part("Задачи",[item("1. 12÷3=",N(4)),item("2. 6×7=",N(42))])]};
+function makeGeneratedVariant(idx,pwd,seed){
+  return {title:`Вариант ${idx}`,password:pwd,parts:[part("Задачи",[item(`1. ${2+seed}×${3+seed}=`,N((2+seed)*(3+seed))),item(`2. ${(10+seed)}+${(5+seed)}=`,N((10+seed)+(5+seed)))])]};
+}
+variants[4]=makeGeneratedVariant(4,"4444",1);
+variants[5]=makeGeneratedVariant(5,"5555",2);
+variants[6]=makeGeneratedVariant(6,"6666",3);
+variants[7]=makeGeneratedVariant(7,"7777",4);
+variants[8]=makeGeneratedVariant(8,"8888",5);
+variants[9]=makeGeneratedVariant(9,"9999",6);
+variants[10]=makeGeneratedVariant(10,"1010",7);
+
+/* === Варианты умножения === */
+const multVariants={};
+function generateMultVariant(idx){
+  let items=[];
+  for(let j=1;j<=20;j++){
+    let a=Math.floor(Math.random()*9)+2;
+    let b=Math.floor(Math.random()*9)+2;
+    if(Math.random()<0.5){items.push(item(`${j}. ${a}×${b}=`,N(a*b)));}
+    else{let prod=a*b;items.push(item(`${j}. ${prod}÷${a}=`,N(b)));}
+  }
+  return {title:`Вариант ${idx} — Таблица умножения`,password:"1111",parts:[{header:"",items:items}]};
+}
+for(let i=1;i<=10;i++){multVariants[i]=generateMultVariant(i);}
+
+/* === Кнопки === */
+window.addEventListener("DOMContentLoaded",()=>{
+  const box=document.getElementById("variants-buttons");
+  for(let i=1;i<=10;i++){
+    const b=document.createElement("button");b.className="btn math";b.textContent="Вариант "+i;
+    b.onclick=()=>openVariant(i,false);box.appendChild(b);
+  }
+  const multBox=document.getElementById("mult-buttons");
+  for(let i=1;i<=10;i++){
+    const b=document.createElement("button");b.className="btn mult";b.textContent="Вариант "+i;
+    b.onclick=()=>openVariant(i,true);multBox.appendChild(b);
+  }
+});
+
+/* === Таймер и рекорды === */
+let currentVariant=null,currentIsMult=false,timer=0,int=null;
+function startTimer(){stopTimer();timer=0;int=setInterval(()=>{timer++;document.getElementById("timer-box").textContent="Время: "+Math.floor(timer/60)+":"+String(timer%60).padStart(2,"0");},1000);}
+function stopTimer(){if(int){clearInterval(int);int=null;}}
+function saveBestResult(key,time,correct){const old=localStorage.getItem(key);let save=true;if(old){const d=JSON.parse(old);if(d.correct>correct)save=false;else if(d.correct===correct&&d.time<=time)save=false;}if(save){localStorage.setItem(key,JSON.stringify({time,correct}));return true;}return false;}
+function getBestResult(key){const val=localStorage.getItem(key);return val?JSON.parse(val):null;}
+function updateRecordsTable(){const t=document.getElementById("records-table");t.innerHTML='<tr><th>Вариант</th><th>Лучшее время</th><th>Правильных</th></tr>';for(let i=1;i<=10;i++){const b=getBestResult("math_"+i);let ts=b?`${Math.floor(b.time/60)}:${String(b.time%60).padStart(2,"0")}`:"—";let cs=b?b.correct:"—";let r=document.createElement("tr");r.innerHTML=`<td>${i}</td><td>${ts}</td><td>${cs}</td>`;t.appendChild(r);}}
+function updateMultRecordsTable(){const t=document.getElementById("mult-records-table");t.innerHTML='<tr><th>Вариант</th><th>Лучшее время</th><th>Правильных</th></tr>';for(let i=1;i<=10;i++){const b=getBestResult("mult_"+i);let ts=b?`${Math.floor(b.time/60)}:${String(b.time%60).padStart(2,"0")}`:"—";let cs=b?b.correct:"—";let r=document.createElement("tr");r.innerHTML=`<td>${i}</td><td>${ts}</td><td>${cs}</td>`;t.appendChild(r);}}
+
+/* === Открытие варианта === */
+function openVariant(i,isMult){
+  currentVariant=i;currentIsMult=isMult;
+  const v=isMult?multVariants[i]:variants[i];
+  openScreen("variant");
+  const best=getBestResult((isMult?"mult_":"math_")+i);
+  document.getElementById("variant-title").textContent=best?`${v.title} — 🏆 Рекорд: ${best.correct} правильных, ${Math.floor(best.time/60)}:${String(best.time%60).padStart(2,"0")}`:v.title;
+  const qBox=document.getElementById("questions");qBox.innerHTML="";
+  v.parts.forEach(p=>{if(p.header){const h=document.createElement("h2");h.textContent=p.header;qBox.appendChild(h);}p.items.forEach(it=>{const d=document.createElement("div");d.className="q";const t=document.createElement("span");t.className="title";t.textContent=it.q;d.appendChild(t);d.appendChild(document.createTextNode(" "));it.inputs.forEach(inp=>{const input=document.createElement("input");input.className="answer";input.type=inp.type==="text"?"text":"number";input.dataset.ans=(inp.ans||[]).map(s=>s.toLowerCase()).join("|");d.appendChild(input);});qBox.appendChild(d);});});
+  document.getElementById("back-btn").onclick=()=>openScreen(isMult?"mult-tests":"math-tests");
+  if((isMult?document.getElementById("mode-timer-mult").checked:document.getElementById("mode-timer-math").checked)){document.getElementById("timer-box").classList.remove("hidden");startTimer();}else{document.getElementById("timer-box").classList.add("hidden");}
+}
+
+/* === Проверка === */
+function checkAnswers(){
+  if(!currentVariant)return;
+  const v=currentIsMult?multVariants[currentVariant]:variants[currentVariant];
+  const pwd=document.getElementById("pwd").value.trim();
+  if(pwd!==v.password){document.getElementById("pwdmsg").textContent="Неверный пароль";return;}
+  document.getElementById("pwdmsg").textContent="Пароль верный";
+  let correct=0,total=0;
+  document.querySelectorAll(".answer").forEach(inp=>{total++;const expected=(inp.dataset.ans||"").split("|").map(s=>s.trim().toLowerCase());const given=(inp.value||"").toLowerCase().trim();if(expected.includes(given)||expected.includes(given.replace(/\s+/g,""))){correct++;inp.parentElement.classList.add("correct");inp.parentElement.classList.remove("wrong");}else{inp.parentElement.classList.add("wrong");inp.parentElement.classList.remove("correct");}});
+  let res=`Результат: ${correct} из ${total}`;if(int){res+=` (Время: ${(Math.floor(timer/60))+":"+(String(timer%60).padStart(2,"0"))})`;stopTimer();if(saveBestResult((currentIsMult?"mult_":"math_")+currentVariant,timer,correct)){res+=" 🏆 Новый рекорд!";}}document.getElementById("score").textContent=res;}
+/* === Сброс === */
+function resetVariant(){document.getElementById("pwd").value="";document.getElementById("score").textContent="";document.getElementById("pwdmsg").textContent="";document.getElementById("questions").innerHTML="";openScreen(currentIsMult?"mult-tests":"math-tests");stopTimer();document.getElementById("timer-box").textContent="Время: 0:00";}
+</script>
+</body>
+</html>
